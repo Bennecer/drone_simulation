@@ -1,8 +1,9 @@
 import mqtt from 'mqtt';
+import Vue from 'vue';
 
 const Storage = window.sessionStorage;
 
-const brokerUrl = "ws://ed-x510urr:3000";
+const brokerUrl = "ws://10.28.72.2:3000";
 const baseOptions = {
     //  keepalive: 60,
     // reschedulePings: true,
@@ -17,6 +18,9 @@ const baseOptions = {
 };
 
 const socket = {};
+
+
+socket.eventBus = new Vue();
 
 const setSocketId = socketId => {
     if (Storage) {
@@ -89,6 +93,7 @@ socket.initSocket = () => {
             setSocketId(baseOptions.clientId);
             socket.subscribe();
             socket.publish();
+            socket.eventBus.$emit('socketConnect', true);
         });
         console.log(baseOptions)
         setSocketId(baseOptions.clientId);
@@ -98,6 +103,7 @@ socket.initSocket = () => {
             // logger.publish(3, 'socket', 'onDisconnect', '');
             console.log("Is offline");
             delSocketId();
+            socket.eventBus.$emit('socketConnect', false);
         });
 
 
@@ -125,7 +131,8 @@ socket.subscribe = () => {
 
 socket.publish = () => {
     if (socket.client) {
-        socket.client.publish(`${baseOptions.clientId}-out/0/3339/0/2/5522`, 'notsaved')
+        socket.client.publish(`${baseOptions.clientId}-out/0/3336/0/1/5514`, 'locationSensor')
+        socket.client.publish(`${baseOptions.clientId}-out/0/3342/0/2/5500`, 'switchSensor')
     }
 }
 

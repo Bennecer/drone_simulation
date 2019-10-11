@@ -13,6 +13,7 @@
 </template>
 <script>
   import dataDevice from '@/assets/dataDevice.json'
+  import socket from '@/services/socket.js'
 
   export default{
       data(){
@@ -21,7 +22,11 @@
           }
       },
       mounted(){
-        this.$store.dispatch('getFullState');
+        socket.eventBus.$on('socketConnected', function(state){
+          if(state){
+            this.$store.dispatch('getFullState');
+          }
+        })
       }
   }
 </script>
