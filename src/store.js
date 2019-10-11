@@ -7,11 +7,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        devUrl: `${process.env.VUE_APP_DEV_URL}`,
-        stageUrl: `${process.env.VUE_APP_STAGE_URL}`,
+        url: `${process.env.VUE_APP_URL}`,
         devEui: "",
-        deviceId: "",
-        apiKey: "",
+        deviceId: `${process.env.VUE_APP_DEVICEID}`,
+        apiKey: `${process.env.VUE_APP_APIKEY}`,
         device: {},
         isConnected: false,
         fullState: {},

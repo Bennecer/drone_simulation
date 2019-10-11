@@ -1,36 +1,3 @@
-<!--template>
-  <div class="login">
-    <h1>Login</h1>
-    
-    <form ref="login-form" @submit.prevent="onLogin">
-      <label for="deviceId">deviceId : </label>
-      <input 
-        type="text" 
-        id="deviceId" 
-        name="deviceId"
-        placeholder="Enter your deviceId"
-        v-model="deviceId" 
-        ref="deviceId"
-        required
-      />
-      <br><br>
-      <label for="apiKey">apiKey : </label>
-      <input 
-        type="text" 
-        id="apiKey" 
-        name="apiKey"
-        placeholder="Enter your apiKey"
-        v-model="apiKey" 
-        ref="apiKey"
-        required
-        @keypress.native.enter="onLogin"
-      />
-      <br><br>
-      <input type="submit" value="Login">
-    </form>
-  </div>
-</template-->
-  
 <template>
   <v-app id="inspire">
     <v-content>

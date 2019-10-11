@@ -1,8 +1,10 @@
 <template>
   <div class="device">
     <h1>Devices</h1>
+    <h3 v-if="isConnected">I'm connected !</h3>
+    <h3 v-else>I'm not connected</h3>
     <div class="deviceContainer">
-      <div class="deviceItem" v-for="device in dataDevice.children">
+      <div class="deviceItem" :key="device.id" v-for="device in dataDevice.children">
         <ul>
           <li>Name : {{ device.name }}</li>
           <li>Type : {{ device.type }}</li>
@@ -18,13 +20,20 @@
   export default{
       data(){
           return{
-              dataDevice
+              dataDevice,
+              isConnected: false
           }
       },
       mounted(){
-        socket.eventBus.$on('socketConnected', function(state){
+        socket.eventBus.$on('socketConnect', async state => {
           if(state){
-            this.$store.dispatch('getFullState');
+            this.isConnected = true;
+            this.$store.dispatch('getFullState').then(res => {
+              console.log(this.$store.state.fullState);
+            });
+          }
+          else{
+            this.isConnected = true;
           }
         })
       }

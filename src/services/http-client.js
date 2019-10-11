@@ -2,7 +2,7 @@ import axios from 'axios';
 //import logger from './logger';
 
 const Storage = window.localStorage;
-const serverUrl = "http://10.28.72.2:8000";
+const serverUrl = `${process.env.VUE_APP_URL}`;
 const restApiRoot = "/api";
 
 const exportTokenToLocalStorage = token => {

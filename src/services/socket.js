@@ -3,7 +3,7 @@ import Vue from 'vue';
 
 const Storage = window.sessionStorage;
 
-const brokerUrl = "ws://10.28.72.2:3000";
+const brokerUrl = `${process.env.VUE_APP_MQTT_URL}`;
 const baseOptions = {
     //  keepalive: 60,
     // reschedulePings: true,
@@ -13,8 +13,8 @@ const baseOptions = {
     connectTimeout: 30 * 1000,
     clean: true,
     clientId: "01bddba130a3d4f5de5cb6bef0bf9a28",
-    username: "5d8cebda40334e40a2b8ceb6",
-    password: "76c8803153e6eeb6edae61d182460f6de8486d8c",
+    username: `${process.env.VUE_APP_DEVICEID}`,
+    password: `${process.env.VUE_APP_APIKEY}`,
 };
 
 const socket = {};
