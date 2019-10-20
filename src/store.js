@@ -8,7 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         url: `${process.env.VUE_APP_URL}`,
-        devEui: "",
+        devEui: "01bddba130a3d4f5de5cb6bef0bf9a28",
         deviceId: `${process.env.VUE_APP_DEVICEID}`,
         apiKey: `${process.env.VUE_APP_APIKEY}`,
         device: {},
