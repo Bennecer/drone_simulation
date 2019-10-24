@@ -6,12 +6,15 @@
         <v-card-text>
           <div class="text--primary">Type : {{ sensor.type }}</div>
         </v-card-text>
+        <v-card-text>
+          <div class="text--primary">Altitude : {{ altitude }}</div>
+        </v-card-text>
       </div>
       <div class="d-flex flex-column justify-center">
-        <v-btn class="ma-2" color="primary">
+        <v-btn @click="up" class="ma-2" color="primary">
           <v-icon left>mdi-arrow-up</v-icon>Up
         </v-btn>
-        <v-btn class="ma-2" color="error">
+        <v-btn @click="down" class="ma-2" color="error">
           <v-icon left>mdi-arrow-down</v-icon>Down
         </v-btn>
       </div>
@@ -25,6 +28,8 @@
 </template>
 
 <script>
+import socket from "@/services/socket.js";
+
 export default {
   name: "SensorAltitude",
   props: {
@@ -35,18 +40,50 @@ export default {
   },
   data() {
     return {
-      iconLink: ""
+      iconLink: "",
+      altitude: null
     };
   },
   components: {},
-  methods: {},
-  mounted() {
-    console.log(this.sensor);
-    this.iconLink = "https://aloes.io" + this.sensor.icons[0];
+  methods: {
+    up() {
+      this.altitude++;
 
-    /*this.$store.dispatch("getFullState").then(res => {
-        console.log(this.sensor);
-      });*/
+      const topic =
+        this.$store.state.devEui +
+        "-out/1/" +
+        this.sensor.type +
+        "/" +
+        this.sensor.nativeNodeId +
+        "/" +
+        this.sensor.nativeSensorId +
+        "/5601";
+      if (typeof topic === "string") {
+        socket.client.publish(topic, "" + this.altitude);
+      }
+    },
+    down() {
+      if (this.altitude > 0) {
+        this.altitude--;
+
+        const topic =
+          this.$store.state.devEui +
+          "-out/1/" +
+          this.sensor.type +
+          "/" +
+          this.sensor.nativeNodeId +
+          "/" +
+          this.sensor.nativeSensorId +
+          "/5601";
+        if (typeof topic === "string") {
+          socket.client.publish(topic, "" + this.altitude);
+        }
+      }
+    }
+  },
+  mounted() {
+    this.iconLink = "https://aloes.io" + this.sensor.icons[0];
+    this.altitude = this.sensor.resources["5601"];
   }
 };
 </script>
