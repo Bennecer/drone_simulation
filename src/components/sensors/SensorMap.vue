@@ -13,6 +13,9 @@
         <v-card-text>
           <div class="text--primary">Long : {{ position[1] }}</div>
         </v-card-text>
+        <v-card-text>
+          <div class="text--primary">Feel free to drag the marker!</div>
+        </v-card-text>
       </div>
       <LMap ref="myMap" :zoom="zoom" style="height: 500px; width: 500px">
         <LTileLayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></LTileLayer>

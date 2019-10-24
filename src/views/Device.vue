@@ -2,7 +2,7 @@
   <v-app class="device">
     <div>
       <v-app-bar color="indigo accent" dark>
-        <v-toolbar-title>Devices</v-toolbar-title>
+        <v-toolbar-title>DRONE SIMULATION - Devices</v-toolbar-title>
         <v-spacer></v-spacer>
         <h3 v-if="isConnected">I'm connected !</h3>
         <h3 v-else>I'm not connected</h3>
