@@ -1,45 +1,34 @@
 <template>
-  <div v-if="sensor.type===3342">
-    <SensorSwitch :sensor="sensor"/>
-  </div>
-  <div v-else-if="sensor.type===3336">
-    
-  </div>
-  <div v-else-if="sensor.type===3321">
-    <SensorAltitude :sensor="sensor"/>
-  </div>
+  <SensorSwitch v-if="sensor.type===3342" :sensor="sensor" />
+
+  <SensorMap v-else-if="sensor.type===3336" :sensor="sensor" />
+
+  <SensorAltitude v-else-if="sensor.type===3321" :sensor="sensor" />
 </template>
 
 <script>
-import SensorSwitch from '../components/sensors/SensorSwitch';
-import SensorAltitude from '../components/sensors/SensorAltitude';
+import SensorSwitch from "../components/sensors/SensorSwitch";
+import SensorAltitude from "../components/sensors/SensorAltitude";
+import SensorMap from "../components/sensors/SensorMap";
 
 export default {
-  name: 'Sensor',
+  name: "Sensor",
   props: {
     sensor: {
       type: Object,
       require: true
     }
   },
-  data(){
-    return{
-    }
+  data() {
+    return {};
   },
   components: {
     SensorSwitch,
-    SensorAltitude
+    SensorAltitude,
+    SensorMap
   },
-  mounted(){
-  }
+  mounted() {}
 };
 </script>
 <style scoped lang="scss">
-  .deviceItem{
-    width: 100%;
-    padding: 5px;
-    margin: 5px;
-    border: 1px solid black;
-    display: flex;
-  }
 </style>

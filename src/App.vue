@@ -5,14 +5,13 @@
 </template>
 
 <script>
-  export default {
-    name: 'App'
-  }
-</script>
-
-<script>
 export default {
-  name: 'App',
- 
+  name: "App"
 };
 </script>
+
+<style>
+* {
+  font-family: Poppins;
+}
+</style>
