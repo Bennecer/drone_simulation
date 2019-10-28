@@ -81,6 +81,10 @@ export default {
         "/5514";
       if (typeof topicLat === "string") {
         socket.client.publish(topicLat, "" + this.position[0]);
+
+        setTimeout(() => {
+          this.$store.dispatch("getFullState");
+        }, 7000);
       }
 
       const topicLong =
@@ -94,6 +98,10 @@ export default {
         "/5515";
       if (typeof topicLong === "string") {
         socket.client.publish(topicLong, "" + this.position[1]);
+
+        setTimeout(() => {
+          this.$store.dispatch("getFullState");
+        }, 7000);
       }
     }
   }

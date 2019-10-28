@@ -60,6 +60,10 @@ export default {
         "/5601";
       if (typeof topic === "string") {
         socket.client.publish(topic, "" + this.altitude);
+
+        setTimeout(() => {
+          this.$store.dispatch("getFullState");
+        }, 7000);
       }
     },
     down() {
@@ -77,6 +81,10 @@ export default {
           "/5601";
         if (typeof topic === "string") {
           socket.client.publish(topic, "" + this.altitude);
+
+          setTimeout(() => {
+            this.$store.dispatch("getFullState");
+          }, 7000);
         }
       }
     }

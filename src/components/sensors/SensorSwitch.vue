@@ -78,6 +78,10 @@ export default {
         resource;
       if (typeof topic === "string") {
         socket.client.publish(topic, "" + value);
+
+        setTimeout(() => {
+          this.$store.dispatch("getFullState");
+        }, 7000);
       }
     }
   },
